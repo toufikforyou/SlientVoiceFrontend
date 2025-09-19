@@ -133,17 +133,8 @@ const AllPost = () => {
   );
 
   return (
-<<<<<<< HEAD
     <div className="min-h-screen  py-8 px-4">
       <div className=" mx-auto">
-        <p className='bg-blue-400 p-4 rounded-2xl'>নিরাপদ ও নিরonymously civic সমস্যা রিপোর্ট করার প্ল্যাটফর্ম</p>
-                    <input type="search" name="" id="" />
-    
-=======
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
->>>>>>> d08537d07ad7f8fe8fd273c77dc9a2db28e4093f
-        
         {/* Description and Search */}
         <div className="bg-indigo-100 p-6 rounded-2xl mb-8 shadow-sm">
           <p className="text-indigo-800 text-center mb-4 text-lg font-medium">
