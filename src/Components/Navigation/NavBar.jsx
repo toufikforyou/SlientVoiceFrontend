@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
+import { GlobalContext } from "../../Context/Global_Provider";
 
 const NavBar = () => {
-    const user = JSON.parse(localStorage.getItem("user")) || true;
+    // const {user} = useContext(GlobalContext);
+    const user = JSON.parse(sessionStorage.getItem("user"));
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
@@ -21,11 +23,13 @@ const NavBar = () => {
     }, []);
 
     const handleLogout = () => {
-        localStorage.setItem("user", null);
-        setOpen(false)
+        sessionStorage.setItem("user", null);
+        setOpen(false);
+        window.location.reload();
         navigate("/");
 
     }
+    console.log(user)
     return (
         <nav className="shadow ">
             <div className="max-w-[1240px]  mx-auto py-4 flex justify-between items-center">
@@ -66,7 +70,7 @@ const NavBar = () => {
                     {
                         user &&
                         <div>
-                            <img src={user?.image} onClick={() => { setOpen(!open) }} className="w-10 rounded-full border border-gray-300 h-10 cursor-pointer" alt={user?.name} />
+                            <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Free-Image.png" onClick={() => { setOpen(!open) }} className="w-10 rounded-full border border-gray-300 h-10 cursor-pointer" alt={user?.name} />
                             {
                                 open &&
                                 <div ref={dropdownRef} className="relative">
@@ -94,7 +98,7 @@ const NavBar = () => {
                     {
                         !user &&
                         <div>
-                            <Link to="/signin" className="bg-[#5f45ba] font-semibold text-white rounded-xl px-4 py-2 hover:bg-[#5845ba]">Sign in</Link>
+                            <Link to="/auth" className="bg-[#5f45ba] font-semibold text-white rounded-xl px-4 py-2 hover:bg-[#5845ba]">Sign in</Link>
                         </div>
                     }
                 </div>
