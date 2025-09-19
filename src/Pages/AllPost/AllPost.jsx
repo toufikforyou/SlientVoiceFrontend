@@ -126,8 +126,10 @@ const AllPost = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-blue-400 py-8 px-4">
+      <div className=" mx-auto">
+        <p className='bg-blue-400 p-4 rounded-2xl'>নিরাপদ ও নিরonymously civic সমস্যা রিপোর্ট করার প্ল্যাটফর্ম</p>
+                    <input type="search" name="" id="" />
     
         
         <div className="space-y-6">
