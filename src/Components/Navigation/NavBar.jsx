@@ -5,7 +5,7 @@ import { GlobalContext } from "../../Context/Global_Provider";
 const NavBar = () => {
     // const {user} = useContext(GlobalContext);
     const user = JSON.parse(sessionStorage.getItem("user"));
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
     useEffect(() => {

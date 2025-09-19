@@ -5,7 +5,7 @@ import Footer from "./Components/Footer/Footer";
 
 const Root = () => {
     return (
-        <div className='bg-gray-800'>
+        <div className=''>
             <div className="sticky">
                 <NavBar />
             </div>
