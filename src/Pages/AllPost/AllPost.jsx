@@ -1,88 +1,89 @@
 import React, { useState, useEffect } from 'react';
-import { FaThumbsUp, FaThumbsDown, FaShareAlt, FaBookmark, FaRegBookmark, FaEllipsisH, FaUserSecret } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown, FaBookmark, FaRegBookmark, FaEllipsisH, FaUserSecret, FaSearch, FaPlus } from 'react-icons/fa';
 import { FiShare2 } from 'react-icons/fi';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const AllPost = () => {
-  // Fake data matching SilentVoices theme with Bangla news
+  // Fake data matching SilentVoices theme with English content
   const allPostsData = [
     {
       id: 1,
-      title: "স্থানীয় সরকারী অফিসে দুর্নীতির অভিযোগ",
-      shortDesc: "একটি স্থানীয় সরকারী অফিসে অর্থ অনিয়মের অভিযোগ উঠেছে",
-      fullDesc: "একটি স্থানীয় সরকারী অফিসে বড় অঙ্কের অর্থ অনিয়মের অভিযোগ উঠেছে। অনামী এক সংবাদদাতার পাঠানো তথ্য ও দলিল অনুযায়ী, গত ছয় মাসে প্রকল্প বাবদ বরাদ্দকৃত অর্থের একটি বড় অংশ অস্বচ্ছ খাতে ব্যয় করা হয়েছে। স্থানীয় বাসিন্দারা দীর্ঘদিন ধরে এই অনিয়মের প্রতিবাদ করে আসছিলেন কিন্তু কোনো ব্যবস্থা নেওয়া হয়নি।",
+      title: "Corruption Allegations in Local Government Office",
+      shortDesc: "Allegations of financial irregularities in a local government office",
+      fullDesc: "There have been allegations of large-scale financial irregularities in a local government office. According to documents submitted by an anonymous informant, a significant portion of funds allocated for projects over the past six months has been spent on non-transparent expenses. Local residents have been protesting against these irregularities for a long time, but no action has been taken.",
       image: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       author: "AnonymousUser123",
-      date: "৪ ঘন্টা আগে",
+      date: "4 hours ago",
       likes: 43,
       dislikes: 2,
-      tags: ["#দুর্নীতি", "#সরকারী_অফিস", "#অর্থ_অনিয়ম"]
+      tags: ["#corruption", "#government", "#financial_misconduct"]
     },
     {
       id: 2,
-      title: "রাজনৈতিক দলের সদস্যরা জনগণের সম্পত্তি দখলের চেষ্টা",
-      shortDesc: "একটি রাজনৈতিক দলের স্থানীয় নেতারা সরকারি জমি দখলের চেষ্টা করছেন",
-      fullDesc: "একটি রাজনৈতিক দলের স্থানীয় নেতারা ও সমর্থকরা সরকারি জমি অবৈধভাবে দখলের চেষ্টা করছেন। স্থানীয় বাসিন্দারা এই দখলদারিত্বের বিরুদ্ধে প্রতিবাদ জানালে তাদের উপর হুমকি দেওয়া হয়েছে। অনামী সূত্রের পাঠানো ভিডিওতে দেখা যাচ্ছে কিভাবে দলীয় পতাকা ওঠিয়ে জমি দখলের চেষ্টা করা হচ্ছে।",
+      title: "Political Party Members Attempt to Seize Public Property",
+      shortDesc: "Local leaders of a political party attempting to occupy government land",
+      fullDesc: "Local leaders and supporters of a political party are attempting to illegally occupy government land. When local residents protested against this encroachment, they were threatened. Video footage from an anonymous source shows how party flags are being raised in an attempt to claim the land.",
       image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-      author: "নিরাপদনাগরিক",
-      date: "১ দিন আগে",
+      author: "SafeCitizen",
+      date: "1 day ago",
       likes: 87,
       dislikes: 5,
-      tags: ["#জমি_দখল", "#রাজনৈতিক_দুর্নীতি", "#সামাজিক_অন্যায়"]
+      tags: ["#land_grab", "#political_corruption", "#social_injustice"]
     },
     {
       id: 3,
-      title: "পৌরসভার কাজে মানহীন উপকরণ ব্যবহার",
-      shortDesc: "স্থানীয় পৌরসভার রাস্তা নির্মাণে মানহীন উপকরণ ব্যবহারের প্রমাণ",
-      fullDesc: "স্থানীয় পৌরসভার রাস্তা নির্মাণ ও মেরামতের কাজে মানহীন উপকরণ ব্যবহার করা হচ্ছে। একজন ঠিকাদারির কর্মীর পাঠানো তথ্য ও ছবিতে দেখা গেছে, নির্ধারিত মানের চেয়ে নিম্নমানের উপকরণ ব্যবহার করে অতিরিক্ত মুনাফা লুট করা হচ্ছে। এই রাস্তাগুলো মাত্র কয়েক মাসের মধ্যেই ক্ষয়ে যাচ্ছে।",
+      title: "Use of Substandard Materials in Municipal Work",
+      shortDesc: "Evidence of using substandard materials in road construction by local municipality",
+      fullDesc: "Substandard materials are being used in road construction and repair work by the local municipality. Information and photos submitted by a contractor's employee show that inferior quality materials are being used compared to the specified standards to make extra profits. These roads are deteriorating within just a few months.",
       image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      author: "সত্যান্বেষী",
-      date: "২ দিন আগে",
+      author: "TruthSeeker",
+      date: "2 days ago",
       likes: 121,
       dislikes: 8,
-      tags: ["#পৌরসভা", "#মানহীন_কাজ", "#ঠিকাদারি_দুর্নীতি"]
+      tags: ["#municipality", "#substandard_work", "#contractor_corruption"]
     },
     {
       id: 4,
-      title: "শিক্ষা বিভাগে চাকরির ক্ষেত্রে অনিয়ম",
-      shortDesc: "স্থানীয় শিক্ষা প্রতিষ্ঠানে চাকরির ক্ষেত্রে দুর্নীতির অভিযোগ",
-      fullDesc: "স্থানীয় একটি শিক্ষা প্রতিষ্ঠানে চাকরির নিয়োগ প্রক্রিয়ায় ঘুষ ও স্বজনপ্রীতির অভিযোগ উঠেছে। যোগ্য প্রার্থীদের বাদ দিয়ে অযোগ্য但有连接的人দের নিয়োগ দেওয়া হচ্ছে। একজন অভিযোগকারীর পাঠানো দলিলে দেখা গেছে, নিয়োগ কমিটির সদস্যরা অর্থের বিনিময়ে নিয়োগ দিচ্ছেন।",
+      title: "Irregularities in Education Department Appointments",
+      shortDesc: "Allegations of corruption in job appointments at local educational institution",
+      fullDesc: "There have been allegations of bribery and favoritism in the appointment process at a local educational institution. Qualified candidates are being rejected while unqualified but connected individuals are being appointed. Documents submitted by a complainant show that appointment committee members are taking money in exchange for jobs.",
       image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      author: "শিক্ষার্থী",
-      date: "৩ দিন আগে",
+      author: "StudentAdvocate",
+      date: "3 days ago",
       likes: 56,
       dislikes: 12,
-      tags: ["#শিক্ষা_দুর্নীতি", "#চাকরির_অনিয়ম", "#ঘুষ"]
+      tags: ["#education_corruption", "#job_irregularities", "#bribery"]
     },
     {
       id: 5,
-      title: "স্বাস্থ্য কেন্দ্রে ওষুধ চুরির ঘটনা",
-      shortDesc: "স্থানীয় স্বাস্থ্য কেন্দ্র থেকে সরকারি ওষুধ চুরির প্রমাণ",
-      fullDesc: "স্থানীয় একটি স্বাস্থ্য কেন্দ্র থেকে সরকারি ওষুধ চুরি করে বেসরকারি ফার্মেসিতে বিক্রির প্রমাণ মিলেছে। একজন কর্মীর গোপনে তোলা ভিডিওতে দেখা গেছে কিভাবে রাতের অন্ধকারে ওষুধ বাক্সগুলো গাড়িতে তোলা হচ্ছে। এই ওষুধগুলো বিনামূল্যে বিতরণের জন্য সরকার কর্তৃক প্রদত্ত ছিল।",
+      title: "Medicine Theft at Health Center",
+      shortDesc: "Evidence of government medicine theft from local health center",
+      fullDesc: "Evidence has been found of government medicines being stolen from a local health center and sold to private pharmacies. Video footage secretly recorded by an employee shows how medicine boxes are being loaded into vehicles under cover of darkness. These medicines were provided by the government for free distribution.",
       image: "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80",
-      author: "স্বাস্থ্যকর্মী",
-      date: "৫ ঘন্টা আগে",
+      author: "HealthWorker",
+      date: "5 hours ago",
       likes: 189,
       dislikes: 7,
-      tags: ["#স্বাস্থ্য", "#ওষুধ_চুরি", "#সরকারি_সম্পদ"]
+      tags: ["#healthcare", "#medicine_theft", "#government_resources"]
     },
     {
       id: 6,
-      title: "নদী দূষণ ও দখলের বিরুদ্ধে প্রতিবাদ",
-      shortDesc: "শিল্পকারখানার বর্জ্যে নদী দূষণ এবং প্রভাবশালী দ্বারা নদী দখল",
-      fullDesc: "এলাকার শিল্পকারখানার untreated বর্জ্য সরাসরি নদীতে ফেলার কারণে নদীর পানি মারাত্মকভাবে দূষিত হয়েছে।同时,一些প্রভাবশালী ব্যক্তি নদীর পাড় দখল করে বাণিজ্যিক স্থাপনা গড়ে তুলছেন। স্থানীয় পরিবেশ কর্মীরা多次প্রতিবাদ জানালেও কর্তৃপক্ষ কোনো ব্যবস্থা নিচ্ছেন না।",
+      title: "Protest Against River Pollution and Encroachment",
+      shortDesc: "River pollution from industrial waste and encroachment by influential people",
+      fullDesc: "River water has been severely polluted due to untreated waste from local industries being directly dumped into the river. At the same time, influential individuals are encroaching on river banks to build commercial establishments. Although local environmental activists have protested multiple times, authorities have taken no action.",
       image: "https://images.unsplash.com/photo-1613303341163-bc28b3b2f5d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      author: "পরিবেশপ্রেমী",
-      date: "৬ ঘন্টা আগে",
+      author: "EnvironmentProtector",
+      date: "6 hours ago",
       likes: 276,
       dislikes: 18,
-      tags: ["#নদী_দূষণ", "#পরিবেশ", "#নদী_দখল"]
+      tags: ["#river_pollution", "#environment", "#encroachment"]
     }
   ];
 
   const [posts, setPosts] = useState([]);
   const [savedPosts, setSavedPosts] = useState({});
   const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const postsPerPage = 3;
 
   // Initialize posts
@@ -122,23 +123,62 @@ const AllPost = () => {
 
   const handleShare = (post) => {
     navigator.clipboard.writeText(window.location.href);
-    alert(`"${post.title}" লিংক কপি করা হয়েছে!`);
+    alert(`"${post.title}" link copied to clipboard!`);
   };
 
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
+<<<<<<< HEAD
     <div className="min-h-screen  py-8 px-4">
       <div className=" mx-auto">
         <p className='bg-blue-400 p-4 rounded-2xl'>নিরাপদ ও নিরonymously civic সমস্যা রিপোর্ট করার প্ল্যাটফর্ম</p>
                     <input type="search" name="" id="" />
     
+=======
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+>>>>>>> d08537d07ad7f8fe8fd273c77dc9a2db28e4093f
         
+        {/* Description and Search */}
+        <div className="bg-indigo-100 p-6 rounded-2xl mb-8 shadow-sm">
+          <p className="text-indigo-800 text-center mb-4 text-lg font-medium">
+            A safe platform for anonymous civic issue reporting
+          </p>
+          
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="relative w-full md:w-2/3">
+              <input 
+                type="search" 
+                placeholder="Search reports..." 
+                className="w-full py-3 pl-12 pr-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <FaSearch className="absolute left-4 top-3.5 text-gray-400" />
+            </div>
+            
+            <Link 
+              to="/create-post"
+              className="flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors font-medium"
+            >
+              <FaPlus /> Report Issue
+            </Link>
+          </div>
+        </div>
+        
+        {/* Posts */}
         <div className="space-y-6">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <div key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-200">
               {/* Post Header */}
               <div className="p-4 flex items-center justify-between border-b border-gray-100">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white">
                     <FaUserSecret />
                   </div>
                   <div className="ml-3">
@@ -146,7 +186,7 @@ const AllPost = () => {
                     <p className="text-gray-500 text-sm">{post.date}</p>
                   </div>
                 </div>
-                <button className="text-gray-500 hover:text-gray-700">
+                <button className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100">
                   <FaEllipsisH />
                 </button>
               </div>
@@ -155,18 +195,18 @@ const AllPost = () => {
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-64 object-cover"
+                className="w-full h-72 object-cover"
               />
 
               {/* Post Content */}
-              <div className="p-4">
-                <h2 className="text-xl font-bold text-gray-900 mb-2">{post.title}</h2>
+              <div className="p-5">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">{post.title}</h2>
                 <p className="text-gray-700 mb-4">{post.shortDesc}</p>
                 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-3">
+                <div className="flex flex-wrap gap-2 mt-4">
                   {post.tags.map((tag, index) => (
-                    <span key={index} className="px-3 py-1 bg-indigo-100 text-indigo-800 text-sm rounded-full">
+                    <span key={index} className="px-3 py-1.5 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -174,27 +214,38 @@ const AllPost = () => {
               </div>
 
               {/* Actions */}
-              <div className="px-4 py-3 flex items-center justify-between border-t border-gray-100 bg-gray-50">
-                <Link to="/postdetails" /><div>
-                  read more 
+              <div className="px-5 py-4 flex items-center justify-between border-t border-gray-100 bg-gray-50">
+                <div className="flex items-center gap-4">
+                  <button className="flex items-center gap-1 text-gray-600 hover:text-indigo-600 transition-colors">
+                    <FaThumbsUp /> <span className="text-sm font-medium">{post.likes}</span>
+                  </button>
+                  <button className="flex items-center gap-1 text-gray-600 hover:text-red-600 transition-colors">
+                    <FaThumbsDown /> <span className="text-sm font-medium">{post.dislikes}</span>
+                  </button>
                 </div>
-                <Link/>
                 
                 <div className="flex items-center gap-4">
+                  <Link 
+                    to={`/postdetails/${post.id}`}
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+                  >
+                    Read More
+                  </Link>
+                  
                   <button
                     onClick={() => handleShare(post)}
-                    className="text-gray-600 hover:text-green-600 transition-colors"
-                    title="শেয়ার করুন"
+                    className="text-gray-600 hover:text-green-600 transition-colors p-2 rounded-full hover:bg-gray-200"
+                    title="Share this report"
                   >
                     <FiShare2 size={18} />
                   </button>
                   
                   <button
                     onClick={() => toggleSavePost(post.id)}
-                    className={`transition-colors ${savedPosts[post.id] ? "text-amber-500" : "text-gray-600 hover:text-amber-500"}`}
-                    title="সেভ করুন"
+                    className={`p-2 rounded-full transition-colors ${savedPosts[post.id] ? "text-amber-500 hover:bg-amber-100" : "text-gray-600 hover:text-amber-500 hover:bg-gray-200"}`}
+                    title="Save this report"
                   >
-                    {savedPosts[post.id] ? <FaBookmark /> : <FaRegBookmark />}
+                    {savedPosts[post.id] ? <FaBookmark size={16} /> : <FaRegBookmark size={16} />}
                   </button>
                 </div>
               </div>
@@ -205,7 +256,7 @@ const AllPost = () => {
         {posts.length < allPostsData.length && (
           <div className="text-center mt-8">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-500"></div>
-            <p className="text-gray-600 mt-2">আরো পোস্ট লোড করা হচ্ছে...</p>
+            <p className="text-gray-600 mt-2">Loading more reports...</p>
           </div>
         )}
       </div>
