@@ -1,16 +1,21 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import ReactDOM from "react-dom/client";
-import { router } from "./Routes";
-import Global_Provider from "./Context/Global_Provider";
+import App from './App.jsx'
+import { AuthProvider } from './contexts/AuthContext.jsx'
 
-const root = document.getElementById("root");
+// Import API tester for development
+if (import.meta.env.DEV) {
+  import('./utils/apiTester.js')
+}
 
-ReactDOM.createRoot(root).render(
-  <Global_Provider>
-    <RouterProvider router={router} />
-  </Global_Provider>
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </StrictMode>,
+)
