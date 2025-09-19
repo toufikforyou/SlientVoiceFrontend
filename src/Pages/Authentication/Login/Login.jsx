@@ -4,6 +4,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaUserSecret } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { GlobalContext } from "../../../Context/Global_Provider";
+import { useNavigate } from "react-router";
 
 const quotes = [
   "Speak up — your voice matters.",
@@ -17,6 +18,7 @@ const AuthPage = () => {
   const { connect_google } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(false);
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,6 +32,8 @@ const AuthPage = () => {
     try {
       const user = await connect_google();
       toast.success("Signed in successfully!", { duration: 4000 });
+      navigate('/');
+
     } catch (error) {
       const errorMessage =
         error?.code === "auth/popup-closed-by-user" ||
